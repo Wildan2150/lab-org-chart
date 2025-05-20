@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Organisasi Laboratorium SMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class', }</script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body,
+        html {
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE 10+ */
+        }
+
+        body::-webkit-scrollbar,
+        html::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Opera */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            color: #1f2937;
+        }
+
+        svg {
+            height: 100%;
+            max-height: 70vh;
+            width: auto;
+        }
+
+        .dark {
+            background-color: #1f2937;
+            color: #e2e8f0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        svg {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a:hover rect{
+            filter: brightness(0.7);
+            transition: all 0.3s ease;
+        }
+
+        .dark a:hover rect{
+            filter: brightness(1.5);
+            transition: all 0.3s ease;
+        }
+
+        .tupoksi-link {
+            color: #3b82f6;
+            font-weight: 600;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .tupoksi-link:hover {
+            color: #2563eb;
+        }
+
+        .dark .tupoksi-link {
+            color: #60a5fa;
+        }
+
+        .dark .tupoksi-link:hover {
+            color: #3b82f6;
+        }
+
+        .org-node {
+            cursor: pointer;
+        }
+
+
+
+        .dark .cls-1 {
+            stroke: #60a5fa;
+        }
+
+
+
+        .dark .cls-9,
+        .dark .cls-10 {
+            fill: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Navigation -->
+        <nav class="bg-blue-600 text-white py-1 px-4 shadow-lg">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="text-3xl">🏫</div>
+                    <h1 class="text-lg font-bold">Lab Organizer</h1>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button id="home-btn" class="p-1 rounded-full hover:bg-blue-700 transition"
+                        title="Kembali ke Beranda">
+                        <span>🏠 Home</span>
+                    </button>
+                    <button id="info-toggle" class="p-1 rounded-full hover:bg-blue-700 transition">
+                        <span>ℹ️ Info</span>
+                    </button>
+                    <button id="dark-mode-toggle" class="p-1 rounded-full hover:bg-blue-700 transition">
+                        <span id="dark-icon">🌙</span>
+                        <span id="light-icon" class="hidden">☀️</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content" class="flex-1 container mx-auto px-4 py-8 fade-in">
+
+
+            <!-- Initial Button -->
+            <div id="initial-section" class="flex flex-row justify-between items-center min-h-[70vh] mb-12 fade-in">
+                <!-- Kiri: Teks -->
+                <div class="flex-1">
+                    <h1 class="text-7xl font-bold text-blue-800 dark:text-gray-100 mb-8 max-w-[40vw]">Struktur Organisasi
+                        Laboratorium SMA</h1>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 max-w-[30vw]">Selamat datang di aplikasi
+                        Struktur  Organisasi Laboratorium SMA. Di sini Anda dapat melihat struktur organisasi laboratorium dan
+                        tugas pokok serta fungsi masing-masing jabatan. Seluruh informasi telah diselaraskan dengan 
+                        Permendiknas No. 24 Tahun 2007.</p>
+                    <button id="show-chart"
+                        class="bg-blue-600 text-white px-6 py-3 mt-8 rounded-full text-lg font-semibold hover:bg-blue-700 transition">
+                        Tampilkan Struktur
+                    </button>
+                </div>
+                <!-- Kanan: Gambar -->
+                <div class="flex-1 flex justify-end">
+                    <img src="bg-org.svg" alt="Organisasi" class="max-w-4xl w-full h-auto mt-[15rem]" />
+                </div>
+            </div>
+
+            <!-- Creator Information -->
+            <div id="creator-info"
+                class="hidden bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg max-w-2xl mx-auto mb-12 fade-in">
+                <h2 class="text-xl font-semibold mb-4 dark:text-white">Disusun Oleh:</h2>
+                <ol class="list-decimal list-inside text-left space-y-2 text-gray-700 dark:text-gray-300">
+                    <li>Irfandita Khoirul Rosyidi (220331603406)</li>
+                    <li>Muhammad Wildan (220331603112)</li>
+                    <li>Putri Zanuantika dea Firnanda (220331600095)</li>
+                    <li>Surya Ady Pratama (220331603782)</li>
+                </ol>
+            </div>
+
+            <!-- Organization Chart -->
+            <div class="org-chart mt-2 hidden fade-in">
+                <h1 class="text-4xl font-bold text-blue-800 dark:text-gray-100 text-center mb-8">Struktur Organisasi
+                    Laboratorium SMA</h1>
+                <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 508.89 400.69">
+                    <defs>
+                        <style>
+                            .cls-1 {
+                                fill: none;
+                                stroke: #3b82f6;
+                                stroke-miterlimit: 10;
+                            }
+
+                            .cls-2 {
+                                fill: #2563eb;
+                            }
+
+                            .cls-3 {
+                                fill: #2563eb;
+                            }
+
+                            .cls-4 {
+                                fill: #2563eb;
+                            }
+
+                            .cls-5 {
+                                fill: #2563eb;
+                            }
+
+                            .cls-6 {
+                                fill: #2563eb;
+                            }
+
+                            .cls-7 {
+                                fill: #2563eb;
+                            }
+
+                            .cls-9,
+                            .cls-10 {
+                                fill: #fff;
+                                font-family: 'Roboto', sans-serif;
+                            }
+
+                            .cls-9 {
+                                font-size: 10px;
+                            }
+
+                            .cls-10 {
+                                font-size: 12px;
+                                font-weight: 600;
+                            }
+                        </style>
+                    </defs>
+                    <g id="Layer_1-2" data-name="Layer 1">
+                        <rect class="cls-1" x="142.12" y="56.37" width="201.01" height="75.93" />
+                        <line class="cls-1" x1="243.17" y1="37.5" x2="243.17" y2="226.89" />
+
+                        <a href="#kepala-sekolah" title="Kepala Sekolah" class="org-node"
+                            onclick="showTupoksi('kepala-sekolah')">
+                            <rect class="cls-3" x="190.17" y=".5" width="106" height="37" rx="4.45" ry="4.45" />
+                            <text class="cls-10" transform="translate(201.31 22.28)">Kepala Sekolah</text>
+                        </a>
+
+                        <a href="#wakil-kepala-kurikulum" title="Wakil Kepala Sekolah Bidang Kurikulum" class="org-node"
+                            onclick="showTupoksi('waka-kurikulum')">
+                            <rect class="cls-5" x="82.85" y="74.33" width="130.91" height="37" rx="4.45" ry="4.45" />
+                            <text class="cls-9" transform="translate(99.99 89.54)">Wakil Kepala Sekolah<tspan x="8.2"
+                                    y="12">Bidang Kurikulum</tspan></text>
+                        </a>
+
+                        <a href="#wakil-kepala-sarana" title="Wakil Kepala Sekolah Bidang Sarana Prasarana"
+                            class="org-node" onclick="showTupoksi('wakil-kepala')">
+                            <rect class="cls-5" x="277.91" y="73.07" width="130.91" height="37" rx="4.45" ry="4.45" />
+                            <text class="cls-9" transform="translate(295.05 88.28)">Wakil Kepala Sekolah<tspan x="-8.39"
+                                    y="12">Bidang Sarana Prasarana</tspan></text>
+                        </a>
+
+                        <a href="#kepala-laboratorium" title="Koordinator Lab IPA" class="org-node"
+                            onclick="showTupoksi('koordinator-lab')">
+                            <rect class="cls-6" x="170.75" y="151.03" width="144.84" height="37" rx="4.45" ry="4.45" />
+                            <text class="cls-10" transform="translate(187.35 172.81)">Koordinator Lab IPA</text>
+                        </a>
+
+                        <a href="#penanggung-jawab-fisika" title="Penanggung Jawab Laboratorium Fisika" class="org-node"
+                            onclick="showTupoksi('pj-fisika')">
+                            <rect class="cls-2" x=".5" y="226.89" width="130" height="37" rx="4.45" ry="4.45" />
+                            <text class="cls-9" transform="translate(18.5 243.09) scale(1.06 1)">Penanggung Jawab<tspan
+                                    x="-.67" y="12">Laboratorium Fisika</tspan></text>
+                        </a>
+
+                        <a href="#penanggung-jawab-kimia" title="Penanggung Jawab Laboratorium Kimia" class="org-node"
+                            onclick="showTupoksi('pj-kimia')">
+                            <rect class="cls-2" x="179.1" y="226.89" width="130" height="37" rx="4.45" ry="4.45" />
+                            <text class="cls-9" transform="translate(199.63 243.09)">Penanggung Jawab<tspan x="-.15"
+                                    y="12">Laboratorium Kimia</tspan></text>
+                        </a>
+
+                        <a href="#penanggung-jawab-biologi" title="Penanggung Jawab Laboratorium Biologi"
+                            class="org-node" onclick="showTupoksi('pj-biologi')">
+                            <rect class="cls-2" x="357.7" y="226.89" width="130" height="37" rx="4.45" ry="4.45" />
+                            <text class="cls-9" transform="translate(378.35 242.1)">Penanggung Jawab<tspan x="-3.08"
+                                    y="12">Laboratorium Biologi</tspan></text>
+                        </a>
+
+                        <a href="#guru-fisika" title="Guru Fisika" class="org-node"
+                            onclick="showTupoksi('guru-fisika')">
+                            <rect class="cls-7" x="52.1" y="287.04" width="103.09" height="27.01" rx="4.45" ry="4.45" />
+                            <text class="cls-9" transform="translate(77.94 304.25)">Guru Fisika</text>
+                        </a>
+
+                        <a href="#laboran-fisika" title="Laboran Fisika" class="org-node"
+                            onclick="showTupoksi('laboran')">
+                            <rect class="cls-4" x="52.1" y="373.19" width="103.09" height="27.01" rx="4.45" ry="4.45" />
+                            <text class="cls-9" transform="translate(70.6 390.39)">Laboran Fisika</text>
+                        </a>
+
+                        <a href="#teknisi-fisika" title="Teknisi Lab. Fisika" class="org-node"
+                            onclick="showTupoksi('teknisi-fisika')">
+                            <rect class="cls-4" x="52.1" y="330.11" width="103.09" height="27.01" rx="4.45" ry="4.45" />
+                            <text class="cls-9" transform="translate(61.42 347.32)">Teknisi Lab. Fisika</text>
+                        </a>
+
+                        <a href="#guru-kimia" title="Guru Kimia" class="org-node" onclick="showTupoksi('guru-kimia')">
+                            <rect class="cls-7" x="228.7" y="287.04" width="103.09" height="27.01" rx="4.45"
+                                ry="4.45" />
+                            <text class="cls-9" transform="translate(255.06 304.25)">Guru Kimia</text>
+                        </a>
+
+                        <a href="#laboran-kimia" title="Laboran Kimia" class="org-node"
+                            onclick="showTupoksi('laboran')">
+                            <rect class="cls-4" x="228.7" y="373.19" width="103.09" height="27.01" rx="4.45"
+                                ry="4.45" />
+                            <text class="cls-9" transform="translate(247.72 390.39)">Laboran Kimia</text>
+                        </a>
+
+                        <a href="#teknisi-kimia" title="Teknisi Lab. Kimia" class="org-node"
+                            onclick="showTupoksi('teknisi-kimia')">
+                            <rect class="cls-4" x="228.7" y="330.31" width="103.09" height="27.01" rx="4.45"
+                                ry="4.45" />
+                            <text class="cls-9" transform="translate(238.55 347.52)">Teknisi Lab. Kimia</text>
+                        </a>
+
+                        <a href="#guru-biologi" title="Guru Biologi" class="org-node"
+                            onclick="showTupoksi('guru-biologi')">
+                            <rect class="cls-7" x="405.31" y="287.04" width="103.09" height="27.01" rx="4.45"
+                                ry="4.45" />
+                            <text class="cls-9" transform="translate(431.14 304.25)">Guru Biologi</text>
+                        </a>
+
+                        <a href="#laboran-biologi" title="Laboran Biologi" class="org-node"
+                            onclick="showTupoksi('laboran')">
+                            <rect class="cls-4" x="405.31" y="373.19" width="103.09" height="27.01" rx="4.45"
+                                ry="4.45" />
+                            <text class="cls-9" transform="translate(421.39 390.39)">Laboran Biologi</text>
+                        </a>
+
+                        <a href="#teknisi-biologi" title="Teknisi Lab. Biologi" class="org-node"
+                            onclick="showTupoksi('teknisi-biologi')">
+                            <rect class="cls-4" x="405.31" y="329.52" width="103.09" height="27.01" rx="4.45"
+                                ry="4.45" />
+                            <text class="cls-9" transform="translate(412.22 346.73)">Teknisi Lab. Biologi</text>
+                        </a>
+
+                        <line class="cls-1" x1="65.5" y1="205.61" x2="424.34" y2="205.61" />
+                        <line class="cls-1" x1="65.5" y1="226.89" x2="65.5" y2="205.61" />
+                        <line class="cls-1" x1="424.34" y1="226.89" x2="424.34" y2="205.61" />
+                        <line class="cls-1" x1="26.26" y1="263.89" x2="26.26" y2="386.69" />
+                        <line class="cls-1" x1="202.87" y1="263.89" x2="202.87" y2="386.69" />
+                        <line class="cls-1" x1="378.89" y1="264.68" x2="378.89" y2="387.48" />
+                        <line class="cls-1" x1="26.26" y1="298.97" x2="52.1" y2="298.97" />
+                        <line class="cls-1" x1="26.26" y1="343.03" x2="52.1" y2="343.03" />
+                        <line class="cls-1" x1="26.26" y1="386.69" x2="52.1" y2="386.69" />
+                        <line class="cls-1" x1="202.87" y1="299.17" x2="228.7" y2="299.17" />
+                        <line class="cls-1" x1="202.87" y1="343.23" x2="228.7" y2="343.23" />
+                        <line class="cls-1" x1="202.87" y1="386.89" x2="228.7" y2="386.89" />
+                        <line class="cls-1" x1="378.89" y1="299.76" x2="404.73" y2="299.76" />
+                        <line class="cls-1" x1="378.89" y1="343.82" x2="404.73" y2="343.82" />
+                        <line class="cls-1" x1="378.89" y1="387.48" x2="404.73" y2="387.48" />
+                    </g>
+                </svg>
+                <div class="text-center text-gray-600 dark:text-gray-400 mt-6">
+                    <p>Klik pada posisi untuk melihat tugas pokok dan fungsi</p>
+                </div>
+            </div>
+
+            <!-- Tupoksi Section -->
+            <div id="tupoksi-section" class="hidden max-w-4xl mx-auto py-8 px-4 fade-in">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold text-blue-800 dark:text-gray-100" id="tupoksi-title">Tugas Pokok dan
+                        Fungsi</h2>
+                    <button onclick="hideTupoksi()"
+                        class="text-blue-600 dark:text-gray-100 hover:text-blue-800 dark:hover:text-blue-100 font-medium">
+                        ← Kembali ke Struktur
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg mb-8">
+                    <div id="tupoksi-content"></div>
+                </div>
+                <div class="p-6 rounded-t-lg  w-full mx-auto text-center mb-8 bg-blue-50 dark:bg-gray-800">
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Klik pada teks berwarna biru untuk langsung menuju ke jabatan terkait dalam alur kerja.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-blue-800 text-white py-4 text-center">
+            <p>
+                © 2025 Struktur Organisasi Laboratorium SMA |
+                Hubungi <a href="mailto:admin@email.com" class="underline hover:text-blue-200">admin</a> jika terdapat
+                kesalahan data.
+            </p>
+        </footer>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="tupoksi.js"></script>
+
+</body>
+
+</html>
