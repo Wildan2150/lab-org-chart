@@ -25,14 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     const savedDarkMode = localStorage.getItem('darkMode');
     appState.darkMode = savedDarkMode === 'true';
-
-    // Apply dark mode if saved preference is true
+    const html = document.documentElement; // Tambahkan ini
     if (appState.darkMode) {
-        document.body.classList.add('dark');
+        html.classList.add('dark'); // Ganti dari document.body ke html
         document.getElementById('dark-icon').classList.add('hidden');
         document.getElementById('light-icon').classList.remove('hidden');
     } else {
-        document.body.classList.remove('dark');
+        html.classList.remove('dark'); // Ganti dari document.body ke html
         document.getElementById('dark-icon').classList.remove('hidden');
         document.getElementById('light-icon').classList.add('hidden');
     }
@@ -40,6 +39,22 @@ document.addEventListener('DOMContentLoaded', function () {
     initDarkModeToggle();
     initInfoToggle();
     initShowChart();
+            // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Duplicate button functionality for mobile
+        document.getElementById('home-btn-mobile').addEventListener('click', () => {
+            document.getElementById('home-btn').click();
+        });
+        document.getElementById('info-toggle-mobile').addEventListener('click', () => {
+            document.getElementById('info-toggle').click();
+        });
+        document.getElementById('dark-mode-toggle-mobile').addEventListener('click', () => {
+            document.getElementById('dark-mode-toggle').click();
+        });
 });
 
 // Dark mode toggle
@@ -47,12 +62,13 @@ function initDarkModeToggle() {
     const toggle = document.getElementById('dark-mode-toggle');
     const darkIcon = document.getElementById('dark-icon');
     const lightIcon = document.getElementById('light-icon');
+    const html = document.documentElement; // Tambahkan ini
 
     toggle.addEventListener('click', function () {
         appState.darkMode = !appState.darkMode;
 
         // Update UI
-        document.body.classList.toggle('dark', appState.darkMode);
+        html.classList.toggle('dark', appState.darkMode); // Ganti dari document.body ke html
 
         // Update icons
         if (appState.darkMode) {
