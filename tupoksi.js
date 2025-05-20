@@ -14,11 +14,10 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Bertanggung jawab atas seluruh kegiatan sekolah termasuk laboratorium</li>
-                            <li>Menetapkan kebijakan umum pengelolaan laboratorium</li>
-                            <li>Mengawasi kinerja <span class="tupoksi-link" onclick="showTupoksi('wakil-kepala')">Wakil Kepala Sekolah</span> bidang sarana prasarana</li>
-                            <li>Menyetujui anggaran pengadaan alat dan bahan laboratorium</li>
-                            <li>Menandatangani laporan tahunan laboratorium</li>
+                            <li>Menetapkan kebijakan umum terkait pengelolaan laboratorium sekolah</li>
+                            <li>Menerima laporan kegiatan laboratorium dari <span class="tupoksi-link" onclick="showTupoksi('waka-kurikulum')">Wakil Kepala Sekolah Bidang Kurikulum</span> dan <span class="tupoksi-link" onclick="showTupoksi('wakil-kepala')">Wakil Kepala Sekolah Bidang Sarana dan Prasarana</span></li>
+                            <li>Memberikan persetujuan akhir terhadap perencanaan, evaluasi, dan pengembangan laboratorium</li>
+                            <li>Mengawasi pelaksanaan kegiatan laboratorium melalui laporan dari <span class="tupoksi-link" onclick="showTupoksi('waka-kurikulum')">Wakil Kepala Sekolah Bidang Kurikulum</span> dan <span class="tupoksi-link" onclick="showTupoksi('wakil-kepala')">Wakil Kepala Sekolah Bidang Sarana dan Prasarana</span></li>
                         </ul>
                     </div>
                 `
@@ -37,11 +36,11 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Membantu <span class="tupoksi-link" onclick="showTupoksi('kepala-sekolah')">Kepala Sekolah</span> dalam pengelolaan sarana prasarana</li>
-                            <li>Mengkoordinasikan pengadaan alat dan bahan laboratorium</li>
-                            <li>Memantau kondisi sarana laboratorium secara berkala</li>
-                            <li>Menyusun laporan kebutuhan laboratorium untuk <span class="tupoksi-link" onclick="showTupoksi('kepala-sekolah')">Kepala Sekolah</span></li>
-                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Lab IPA</span> untuk perencanaan pengembangan</li>
+                            <li>Menyusun, mengembangkan, dan mengevaluasi kurikulum termasuk integrasi kegiatan laboratorium</li>
+                            <li>Mengawasi keterpaduan kegiatan laboratorium dengan kurikulum pembelajaran</li>
+                            <li>Menyampaikan kebijakan teknis kepada <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Laboratorium IPA</span></li>
+                            <li>Menerima laporan kegiatan pembelajaran dari <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Laboratorium IPA</span></li>
+                            <li>Melaporkan perkembangan dan kendala kepada <span class="tupoksi-link" onclick="showTupoksi('kepala-sekolah')">Kepala Sekolah</span></li>
                         </ul>
                     </div>
                 `
@@ -61,10 +60,15 @@ const tupoksiData = {
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
                             <li>Mengkoordinasikan seluruh kegiatan laboratorium IPA</li>
-                            <li>Bertanggung jawab kepada <span class="tupoksi-link" onclick="showTupoksi('wakil-kepala')">Wakil Kepala Sekolah</span> bidang sarana prasarana</li>
-                            <li>Membuat perencanaan pengembangan laboratorium</li>
-                            <li>Mengawasi kinerja <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">Penanggung Jawab Lab Fisika</span>, <span class="tupoksi-link" onclick="showTupoksi('pj-kimia')">Kimia</span>, dan <span class="tupoksi-link" onclick="showTupoksi('pj-biologi')">Biologi</span></li>
-                            <li>Menyusun jadwal penggunaan laboratorium bersama <span class="tupoksi-link" onclick="showTupoksi('guru-kimia')">guru mata pelajaran</span></li>
+                            <li>Bertanggung jawab atas operasional harian laboratorium</li>
+                            <li>Melaporkan kegiatan laboratorium kepada <span class="tupoksi-link"
+                                onclick="showTupoksi('kepala-sekolah')">Kepala Sekolah</span></li>
+                            <li>Memastikan kesiapan alat dan bahan untuk praktikum</li>
+                            <li>Mengevaluasi kebutuhan perbaikan alat dan melaporkan ke <span class="tupoksi-link"
+                                onclick="showTupoksi('wakil-kepala')">Wakil Kepala Sekolah</span> bidang sarana prasarana</li>
+                            <li>Membuat perencanaan pengembangan laboratorium dengan <span class="tupoksi-link" onclick="showTupoksi('wakil-kepala')">Wakil Kepala Sekolah</span> bidang sarana prasarana</li>
+                            <li>Mengawasi kinerja <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">Penanggung Jawab Lab. Fisika</span>, <span class="tupoksi-link" onclick="showTupoksi('pj-kimia')">Penanggung Jawab Lab. Kimia</span>, dan <span class="tupoksi-link" onclick="showTupoksi('pj-biologi')">Penanggung Jawab Lab. Biologi</span></li>
+                            <li>Menyusun jadwal penggunaan laboratorium bersama <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">Penanggung Jawab Lab. Fisika</span>, <span class="tupoksi-link" onclick="showTupoksi('pj-kimia')">Penanggung Jawab Lab. Kimia</span>, dan <span class="tupoksi-link" onclick="showTupoksi('pj-biologi')">Penanggung Jawab Lab. Biologi</span></li>
                         </ul>
                     </div>
                 `
@@ -82,19 +86,21 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Mengawasi kegiatan praktikum Fisika</li>
-                            <li>Mengatur penggunaan alat bersama <span class="tupoksi-link" onclick="showTupoksi('guru-fisika')">Guru Fisika</span></li>
-                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('teknisi-fisika')">Teknisi Lab Fisika</span></li>
+                           <li>Melaksanakan kegiatan praktikum Fisika sesuai kurikulum</li>
+                            <li>Mengkoordinasikan alat dan bahan Fisika bersama <span class="tupoksi-link" onclick="showTupoksi('teknisi-fisika')">Teknisi Fisika</span>, <span class="tupoksi-link" onclick="showTupoksi('guru-fisika')">Guru Fisika</span>, dan <span class="tupoksi-link" onclick="showTupoksi('laboran')">Laboran</span></li>
+                            <li>Melaporkan kebutuhan dan kegiatan Fisika kepada <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Laboratorium IPA</span></li>
+                            <li>Melaksanakan evaluasi praktikum Fisika</li>
+                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('guru-fisika')">Guru Fisika</span> dalam pelaksanaan praktikum</li>                     
                         </ul>
                     </div>
                 `
     },
     'pj-kimia': {
         title: 'Penanggung Jawab Lab Kimia',
-        icon: '⚗️',
+        icon: '⚗',
         content: `
                     <div class="flex items-center mb-4">
-                        <div class="text-4xl mr-4">⚗️</div>
+                        <div class="text-4xl mr-4">⚗</div>
                         <div>
                             <h3 class="text-xl font-bold dark:text-white">Penanggung Jawab Lab Kimia</h3>
                         </div>
@@ -102,9 +108,11 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Mengawasi operasional lab kimia harian</li>
-                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('guru-kimia')">Guru Kimia</span> dan <span class="tupoksi-link" onclick="showTupoksi('teknisi-kimia')">Teknisi Lab Kimia</span></li>
-                            <li>Melaporkan kegiatan kepada <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Lab IPA</span></li>
+                            <li>Melaksanakan kegiatan praktikum Kimia sesuai kurikulum</li>
+                            <li>Mengkoordinasikan alat dan bahan Kimia bersama <span class="tupoksi-link" onclick="showTupoksi('teknisi-kimia')">Teknisi Kimia</span>, <span class="tupoksi-link" onclick="showTupoksi('guru-kimia')">Guru Kimia</span>, dan <span class="tupoksi-link" onclick="showTupoksi('laboran')">Laboran</span></li>
+                            <li>Melaporkan kebutuhan dan kegiatan Kimia kepada <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Laboratorium IPA</span></li>
+                            <li>Melaksanakan evaluasi praktikum Kimia</li>
+                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('guru-kimia')">Guru Kimia</span> dalam pelaksanaan praktikum</li>
                         </ul>
                     </div>
                 `
@@ -122,19 +130,22 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Memastikan kegiatan lab biologi berjalan baik</li>
-                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('guru-biologi')">Guru Biologi</span> dan <span class="tupoksi-link" onclick="showTupoksi('teknisi-biologi')">Teknisi Lab Biologi</span></li>
-                            <li>Menyusun laporan kegiatan lab biologi</li>
+                             <li>Melaksanakan kegiatan praktikum Biologi sesuai kurikulum</li>
+                            <li>Mengkoordinasikan alat dan bahan Biologi bersama <span class="tupoksi-link" onclick="showTupoksi('teknisi-biologi')">Teknisi Biologi</span>, <span class="tupoksi-link" onclick="showTupoksi('guru-biologi')">Guru Biologi</span>, dan <span class="tupoksi-link" onclick="showTupoksi('laboran')">Laboran</span></li>
+                            <li>Melaporkan kebutuhan dan kegiatan Biologi kepada <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Laboratorium IPA</span></li>
+                            <li>Melaksanakan evaluasi praktikum Biologi</li>
+                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('guru-biologi')">Guru Biologi</span> dalam pelaksanaan praktikum</li>
+
                         </ul>
                     </div>
                 `
     },
     'guru-fisika': {
         title: 'Guru Fisika',
-        icon: '⚛️',
+        icon: '⚛',
         content: `
                     <div class="flex items-center mb-4">
-                        <div class="text-4xl mr-4">⚛️</div>
+                        <div class="text-4xl mr-4">⚛</div>
                         <div>
                             <h3 class="text-xl font-bold dark:text-white">Guru Fisika</h3>
                             <p class="text-gray-600 dark:text-gray-400">Pengguna Laboratorium</p>
@@ -143,7 +154,7 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Mengajukan jadwal penggunaan lab ke <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">koordinator lab</span></li>
+                            <li>Mengajukan jadwal penggunaan lab ke <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">PJ Lab.Fisika</span></li>
                             <li>Mengajukan kebutuhan alat praktikum ke <span class="tupoksi-link" onclick="showTupoksi('laboran')">laboran</span></li>
                             <li>Melaporkan kerusakan alat saat praktikum ke <span class="tupoksi-link" onclick="showTupoksi('teknisi-fisika')">teknisi</span></li>
                             <li>Memastikan siswa menggunakan alat dengan benar</li>
@@ -166,7 +177,7 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Mengajukan jadwal penggunaan lab ke <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">koordinator lab</span></li>
+                            <li>Mengajukan jadwal penggunaan lab ke <span class="tupoksi-link" onclick="showTupoksi('pj-kimia')"> PJ Lab. Kimia</span></li>
                             <li>Mengajukan kebutuhan bahan praktikum ke <span class="tupoksi-link" onclick="showTupoksi('laboran')">laboran</span></li>
                             <li>Melaporkan kerusakan alat saat praktikum ke <span class="tupoksi-link" onclick="showTupoksi('teknisi-kimia')">teknisi</span></li>
                             <li>Bertanggung jawab atas keselamatan siswa selama praktikum</li>
@@ -189,7 +200,7 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Mengajukan jadwal penggunaan lab ke <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">koordinator lab</span></li>
+                            <li>Mengajukan jadwal penggunaan lab ke <span class="tupoksi-link" onclick="showTupoksi('pj-biologi')">PJ Lab. Biologi</span></li>
                             <li>Mengajukan kebutuhan spesimen dan bahan ke <span class="tupoksi-link" onclick="showTupoksi('laboran')">laboran</span></li>
                             <li>Melaporkan kerusakan mikroskop atau alat lain ke <span class="tupoksi-link" onclick="showTupoksi('teknisi-biologi')">teknisi</span></li>
                             <li>Mengawasi penggunaan bahan biologis oleh siswa</li>
@@ -212,10 +223,12 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Lab IPA</span> dalam penyusunan jadwal praktikum</li>
-                            <li>Memastikan kegiatan laboratorium sesuai kurikulum</li>
-                            <li>Menyusun kebijakan kurikulum praktikum bersama <span class="tupoksi-link" onclick="showTupoksi('guru-kimia')">guru mata pelajaran</span></li>
-                        </ul>
+                            <li>Menyusun, mengembangkan, dan mengevaluasi kurikulum termasuk integrasi kegiatan laboratorium</li>
+                            <li>Mengawasi keterpaduan kegiatan laboratorium dengan kurikulum pembelajaran</li>
+                            <li>Menyampaikan kebijakan teknis kepada <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Laboratorium IPA</span></li>
+                            <li>Menerima laporan kegiatan pembelajaran dari <span class="tupoksi-link" onclick="showTupoksi('koordinator-lab')">Koordinator Laboratorium IPA</span></li>
+                            <li>Melaporkan perkembangan dan kendala kepada <span class="tupoksi-link" onclick="showTupoksi('kepala-sekolah')">Kepala Sekolah</span></li>
+                                </ul>
                     </div>
                 `
     },
@@ -232,9 +245,11 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Merawat dan memperbaiki alat-alat Fisika</li>
-                            <li>Melaporkan alat rusak ke <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">Penanggung Jawab Lab Fisika</span></li>
-                            <li>Membantu <span class="tupoksi-link" onclick="showTupoksi('guru-fisika')">Guru Fisika</span> menyiapkan alat</li>
+                            <li>Menyiapkan alat-alat percobaan Fisika berdasarkan laporan dari <span class="tupoksi-link" onclick="showTupoksi('guru-fisika')">Guru Fisika</span></li>
+                            <li>Melakukan kalibrasi dan pemeriksaan alat ukur Fisika secara berkala</li>
+                            <li>Melaporkan kerusakan alat Fisika ke <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">PJ Fisika</span></li>
+                            <li>Mendampingi <span class="tupoksi-link" onclick="showTupoksi('guru-fisika')">Guru Fisika</span> saat praktikum</li>
+                            <li>Membantu <span class="tupoksi-link" onclick="showTupoksi('laboran')">Laboran</span> dalam penataan alat Fisika</li>
                         </ul>
                     </div>
                 `
@@ -252,10 +267,12 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Menyiapkan larutan kimia dan alat praktikum</li>
-                            <li>Menangani kerusakan alat dan kalibrasi</li>
-                            <li>Berkoordinasi dengan <span class="tupoksi-link" onclick="showTupoksi('pj-kimia')">Penanggung Jawab Lab Kimia</span></li>
-                        </ul>
+                           <li>Menyiapkan alat-alat percobaan Kimia berdasarkan laporan dari <span class="tupoksi-link" onclick="showTupoksi('guru-kimia')">Guru Kimia</span></li>
+                            <li>Melakukan kalibrasi dan pemeriksaan alat ukur Kimia secara berkala</li>
+                            <li>Melaporkan kerusakan alat Kimia ke <span class="tupoksi-link" onclick="showTupoksi('pj-kimia')">PJ Kimia</span></li>
+                            <li>Mendampingi <span class="tupoksi-link" onclick="showTupoksi('guru-kimia')">Guru Kimia</span> saat praktikum</li>
+                            <li>Membantu <span class="tupoksi-link" onclick="showTupoksi('laboran')">Laboran</span> dalam penataan alat Kimia</li>
+                            </ul>
                     </div>
                 `
     },
@@ -272,9 +289,11 @@ const tupoksiData = {
                     <div class="space-y-4">
                         <h4 class="font-bold text-lg dark:text-white">Tugas Pokok dan Fungsi:</h4>
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
-                            <li>Mempersiapkan spesimen dan alat biologi</li>
-                            <li>Melaporkan kebutuhan alat dan bahan</li>
-                            <li>Membantu <span class="tupoksi-link" onclick="showTupoksi('guru-biologi')">Guru Biologi</span> saat praktikum</li>
+                           <li>Menyiapkan alat-alat percobaan Biologi berdasarkan laporan dari <span class="tupoksi-link" onclick="showTupoksi('guru-biologi')">Guru Biologi</span></li>
+                            <li>Melakukan kalibrasi dan pemeriksaan alat ukur Biologi secara berkala</li>
+                            <li>Melaporkan kerusakan alat Biologi ke <span class="tupoksi-link" onclick="showTupoksi('pj-biologi')">PJ Biologi</span></li>
+                            <li>Mendampingi <span class="tupoksi-link" onclick="showTupoksi('guru-biologi')">Guru Biologi</span> saat praktikum</li>
+                            <li>Membantu <span class="tupoksi-link" onclick="showTupoksi('laboran')">Laboran</span> dalam penataan alat Biologi</li>
                         </ul>
                     </div>
                 `
@@ -295,11 +314,11 @@ const tupoksiData = {
                         <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
                             <li>Mengelola administrasi laboratorium (inventaris, peminjaman)</li>
                             <li>Mencatat keluar masuknya alat dan bahan laboratorium</li>
-                            <li>Melaporkan kerusakan alat ke <span class="tupoksi-link" onclick="showTupoksi('teknisi-fisika')">teknisi lab</span> atau <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">penanggung jawab</span></li>
+                            <li>Melaporkan kerusakan alat ke <span class="tupoksi-link" onclick="showTupoksi('teknisi-fisika')">teknisi Lab. Fisika</span>,  <span class="tupoksi-link" onclick="showTupoksi('teknisi-kimia')">teknisi Lab. kimia</span> , dan  <span class="tupoksi-link" onclick="showTupoksi('teknisi-biologi')">teknisi Lab. Biologi</span></li>
                             <li>Menyiapkan bahan praktikum sesuai permintaan <span class="tupoksi-link" onclick="showTupoksi('guru-kimia')">guru</span></li>
-                            <li>Membuat laporan bulanan ke <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">penanggung jawab</span></li>
+                            <li>Membuat laporan bulanan ke <span class="tupoksi-link" onclick="showTupoksi('pj-fisika')">PJ. Lab. Fisika</span>,  <span class="tupoksi-link" onclick="showTupoksi('pj-kimia')">PJ. Lab. kimia</span> , dan  <span class="tupoksi-link" onclick="showTupoksi('pj-biologi')">PJ. Lab. Biologi</span></li>
                         </ul>
                     </div>
-                `
+                `
     }
 };
