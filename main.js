@@ -3,10 +3,9 @@ const appState = {
     darkMode: false,
     currentPosition: null,
     chartVisible: false,
-    infoVisible: false
+    infoVisible: false,
+    isEditing: false
 };
-
-
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function () {
@@ -25,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     const savedDarkMode = localStorage.getItem('darkMode');
     appState.darkMode = savedDarkMode === 'true';
-    const html = document.documentElement; // Tambahkan ini
+    const html = document.documentElement;
     if (appState.darkMode) {
-        html.classList.add('dark'); // Ganti dari document.body ke html
+        html.classList.add('dark');
         document.getElementById('dark-icon').classList.add('hidden');
         document.getElementById('light-icon').classList.remove('hidden');
     } else {
-        html.classList.remove('dark'); // Ganti dari document.body ke html
+        html.classList.remove('dark');
         document.getElementById('dark-icon').classList.remove('hidden');
         document.getElementById('light-icon').classList.add('hidden');
     }
@@ -39,22 +38,24 @@ document.addEventListener('DOMContentLoaded', function () {
     initDarkModeToggle();
     initInfoToggle();
     initShowChart();
-            // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', () => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        });
+    loadTupoksiData();
 
-        // Duplicate button functionality for mobile
-        document.getElementById('home-btn-mobile').addEventListener('click', () => {
-            document.getElementById('home-btn').click();
-        });
-        document.getElementById('info-toggle-mobile').addEventListener('click', () => {
-            document.getElementById('info-toggle').click();
-        });
-        document.getElementById('dark-mode-toggle-mobile').addEventListener('click', () => {
-            document.getElementById('dark-mode-toggle').click();
-        });
+    // Mobile menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Duplicate button functionality for mobile
+    document.getElementById('home-btn-mobile').addEventListener('click', () => {
+        document.getElementById('home-btn').click();
+    });
+    document.getElementById('info-toggle-mobile').addEventListener('click', () => {
+        document.getElementById('info-toggle').click();
+    });
+    document.getElementById('dark-mode-toggle-mobile').addEventListener('click', () => {
+        document.getElementById('dark-mode-toggle').click();
+    });
 });
 
 // Dark mode toggle
@@ -62,15 +63,12 @@ function initDarkModeToggle() {
     const toggle = document.getElementById('dark-mode-toggle');
     const darkIcon = document.getElementById('dark-icon');
     const lightIcon = document.getElementById('light-icon');
-    const html = document.documentElement; // Tambahkan ini
+    const html = document.documentElement;
 
     toggle.addEventListener('click', function () {
         appState.darkMode = !appState.darkMode;
+        html.classList.toggle('dark', appState.darkMode);
 
-        // Update UI
-        html.classList.toggle('dark', appState.darkMode); // Ganti dari document.body ke html
-
-        // Update icons
         if (appState.darkMode) {
             darkIcon.classList.add('hidden');
             lightIcon.classList.remove('hidden');
@@ -79,7 +77,6 @@ function initDarkModeToggle() {
             lightIcon.classList.add('hidden');
         }
 
-        // Save preference to localStorage
         localStorage.setItem('darkMode', appState.darkMode);
     });
 }
@@ -90,7 +87,7 @@ function initInfoToggle() {
     const creatorInfo = document.getElementById('creator-info');
     const orgChart = document.querySelector('.org-chart');
     const tupoksiSection = document.getElementById('tupoksi-section');
-    const initialSection = document.getElementById('initial-section'); // tambahkan ini
+    const initialSection = document.getElementById('initial-section');
 
     toggle.addEventListener('click', function () {
         appState.infoVisible = !appState.infoVisible;
@@ -99,12 +96,12 @@ function initInfoToggle() {
         if (appState.infoVisible) {
             orgChart.classList.add('hidden');
             tupoksiSection.classList.add('hidden');
-            initialSection.classList.add('hidden'); // tambahkan ini
+            initialSection.classList.add('hidden');
             appState.currentPosition = null;
         } else if (appState.chartVisible) {
             orgChart.classList.remove('hidden');
         } else {
-            initialSection.classList.remove('hidden'); // tambahkan ini agar kembali ke awal jika chart tidak aktif
+            initialSection.classList.remove('hidden');
         }
 
         window.scrollTo({ top: creatorInfo.offsetTop, behavior: 'smooth' });
@@ -125,10 +122,37 @@ function initShowChart() {
     });
 }
 
+// Tupoksi Data Management
+function loadTupoksiData() {
+    const savedData = localStorage.getItem('tupoksiData');
+    if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        Object.assign(window.tupoksiData, parsedData);
+    }
+}
+
+function saveTupoksiData(position, newData) {
+    window.tupoksiData[position] = newData;
+    localStorage.setItem('tupoksiData', JSON.stringify(window.tupoksiData));
+}
+
+function exportTupoksiData() {
+    const dataStr = `const tupoksiData = ${JSON.stringify(window.tupoksiData, null, 2)};`;
+    const blob = new Blob([dataStr], { type: 'text/javascript' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'tupoksi.js';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
 // Show tupoksi
 function showTupoksi(positionId) {
     appState.currentPosition = positionId;
-    const positionData = tupoksiData[positionId];
+    const positionData = window.tupoksiData[positionId];
     if (!positionData) return;
 
     const orgChart = document.querySelector('.org-chart');
@@ -138,15 +162,77 @@ function showTupoksi(positionId) {
     tupoksiSection.classList.remove('hidden');
     creatorInfo.classList.add('hidden');
     appState.infoVisible = false;
-    document.getElementById('tupoksi-title').textContent = `Tugas Pokok dan Fungsi ${positionData.title}`;
-    document.getElementById('tupoksi-content').innerHTML = positionData.content;
 
-    // Tambahkan animasi fade-in setiap kali muncul
+    const content = positionData.content;
+    document.getElementById('tupoksi-title').textContent = `Tugas Pokok dan Fungsi ${positionData.title}`;
+    document.getElementById('tupoksi-content').innerHTML = content;
+
+    if (isAdmin()) {
+        addEditButton(positionId, content);
+    }
+
     tupoksiSection.classList.remove('fade-in');
-    void tupoksiSection.offsetWidth; // trigger reflow
+    void tupoksiSection.offsetWidth;
     tupoksiSection.classList.add('fade-in');
 
     window.scrollTo({ top: tupoksiSection.offsetTop, behavior: 'smooth' });
+}
+
+function isAdmin() {
+    return localStorage.getItem('isAdmin') === 'true';
+}
+
+function addEditButton(positionId, content) {
+    const tupoksiContent = document.getElementById('tupoksi-content');
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.className = 'bg-blue-600 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-700 transition';
+    editButton.onclick = () => showEditForm(positionId, content);
+    tupoksiContent.appendChild(editButton);
+}
+
+function showEditForm(positionId, content) {
+    const tupoksiContent = document.getElementById('tupoksi-content');
+    const currentData = window.tupoksiData[positionId];
+    
+    const form = document.createElement('form');
+    form.className = 'space-y-4 mt-4';
+    form.innerHTML = `
+        <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Judul</label>
+            <input type="text" value="${currentData.title}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white" id="edit-title">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Ikon</label>
+            <input type="text" value="${currentData.icon}" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white" id="edit-icon">
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Konten</label>
+            <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 dark:bg-gray-800 dark:border-gray-600 dark:text-white h-64" id="edit-content">${content}</textarea>
+        </div>
+        <div class="flex space-x-4">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Simpan</button>
+            <button type="button" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition" id="cancel-edit">Batal</button>
+            <button type="button" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition" id="export-data">Export Data</button>
+        </div>
+    `;
+
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        const newData = {
+            title: document.getElementById('edit-title').value,
+            icon: document.getElementById('edit-icon').value,
+            content: document.getElementById('edit-content').value
+        };
+        saveTupoksiData(positionId, newData);
+        showTupoksi(positionId);
+    };
+
+    tupoksiContent.innerHTML = '';
+    tupoksiContent.appendChild(form);
+
+    document.getElementById('cancel-edit').onclick = () => showTupoksi(positionId);
+    document.getElementById('export-data').onclick = exportTupoksiData;
 }
 
 // Hide tupoksi
