@@ -17,7 +17,7 @@ Dibangun dengan React, TypeScript, Tailwind CSS, dan Vite.
 
 1. **Clone repo ini**
    ```sh
-   git clone https://github.com/username/update1.5-lab-org-chart.git
+   git clone https://github.com/Wildan2150/lab-org-chart.git
    cd update1.5-lab-org-chart
    ```
 
@@ -56,3 +56,7 @@ src/
 - Surya Ady Pratama
 
 ---
+
+## Demo App
+
+[https://silaba-beta2705.netlify.app/](https://silaba-beta2705.netlify.app/)
