@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark {
+  background-color: #1f2937;
+  color: #e2e8f0;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.tupoksi-link {
+  color: #3b82f6;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tupoksi-link:hover {
+  color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.dark .tupoksi-link {
+  color: #60a5fa;
+}
+
+.dark .tupoksi-link:hover {
+  color: #3b82f6;
+}
+
+.nav-button {
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  transform: translateY(-2px);
+}
+
+.mobile-menu-item {
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-item:hover {
+  transform: translateX(10px);
+}
